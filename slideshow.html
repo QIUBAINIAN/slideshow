@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  #sy{
+    overflow:hidden;
+    width:300px;
+    height:300px;
+    margin:auto;
+    cursor:pointer;
+  }
+  #st,#sy{
+    display:flex; 
+    flex-direction:row;
+  }
+  img{
+    width:300px;
+    height:300px;
+  }
+  .net{
+    position:absolute;
+    z-index:10;
+    font-size:36px;
+    color:blue;
+    cursor:pointer;
+    top:20%;
+  }
+  .rig{
+    right:32%;
+  }
+  .let{
+    left:32%;
+  }
+</style>
+<body>
+  <div id='sy'>
+    <div id='st'>
+      <img src='1.jpg'/>
+      <img src='3.jpg'/>
+      <img src='4.jpg'/>
+      <img src='6.jpg'/>
+    </div>
+    <div id='sc'>
+      <img src='7.jpg'/>
+    </div>
+    <span class='net let' onclick='letfn()'>&lt;</span>
+    <span class='net rig' onclick='figfn()'>&gt;</span>
+  </div>
+<script>
+  st.style='position:relative;left:0px; transition:all 1s linear;';
+  sc.style='position:relative;left:0px; transition:all 1s linear;';
+  //setInterval(mett ,3000);
+  stc=null
+  function set(){
+    stc=setTimeout(()=>{
+      mett(-300);
+      set();
+    },3000)
+  }
+  set();
+  console.log(sy);
+  sy.onmouseenter=function(){
+    clearTimeout(stc)
+  }
+  sy.onmouseleave=function(){
+    set();
+  }
+  let c,f
+  function figfn(){
+    mett(-300);
+  }
+  function letfn(){
+    letmett(300);
+  }
+  function mett(num){
+    c=parseInt(st.style.left);
+    f=parseInt(sc.style.left);
+    if(c==-1200){
+      st.style.transition='all 0s linear'
+      st.style.left='300px';
+      c=300;
+    }
+    if(f==-1500){
+      sc.style.transition='all 0s linear'
+      sc.style.left='0px';
+      f=0;
+    }else{
+      sc.style.transition='all 1s linear'
+    }
+    if(c==300){
+      setTimeout(()=>{
+        st.style.transition='all 1s linear'
+        st.style.left=c+num+'px';
+      },0)
+    }else{
+      st.style.left=c+num+'px';
+    }
+
+    sc.style.left=f+num+'px';
+  }
+  function letmett(num){
+    c=parseInt(st.style.left);
+    f=parseInt(sc.style.left);
+    if(c==300){
+      st.style.transition='all 0s linear'
+      st.style.left='-1200px';
+      c=-1200;
+    }else{
+      st.style.transition='all 1s linear'
+    }
+    if(f==0){
+      sc.style.transition='all 0s linear'
+      sc.style.left='-1500px';
+      f=-1500;
+    }
+    if(f==-1500){
+      setTimeout(()=>{
+        sc.style.transition='all 1s linear'
+        sc.style.left=f+num+'px';
+      },0)
+    }else{
+      sc.style.left=f+num+'px';
+    }
+    if(c==-1200){
+      setTimeout(()=>{
+        st.style.transition='all 1s linear'
+        st.style.left=f+num+'px';
+      },0)
+    }else{
+          st.style.left=c+num+'px';
+    }
+  }
+</script>
+</body>
+
+</html>
